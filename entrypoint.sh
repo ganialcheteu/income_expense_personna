@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Générer le fichier .env si manquant
+# Generate .env if missing
 if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Générer la clé d'application (force pour éviter les confirmations)
+# Generate Laravel app key
 php artisan key:generate --force
 
-# Lancer PHP-FPM
-exec php-fpm
+# Start Apache (required for php:apache images)
+exec apache2-foreground
