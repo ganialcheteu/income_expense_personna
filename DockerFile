@@ -1,0 +1,23 @@
+FROM php:8.3-fpm
+
+# Installer les dépendances nécessaires à Laravel + extensions MariaDB (pdo_mysql)
+RUN apt-get update && apt-get install -y \
+    libzip-dev zip unzip git mariadb-client \
+    && docker-php-ext-install pdo pdo_mysql zip
+
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www
+
+COPY . .
+
+RUN composer install --optimize-autoloader --no-dev
+
+# Droits pour storage et bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
+php artisan key:generate

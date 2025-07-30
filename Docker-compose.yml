@@ -1,0 +1,33 @@
+FROM php:8.3-fpm
+
+# Installer dépendances système
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    curl \
+    git \
+    mariadb-client
+
+# Installer extensions PHP
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copier le code
+WORKDIR /var/www
+COPY . .
+
+# Installer les dépendances Laravel
+RUN composer install --optimize-autoloader --no-dev
+
+# Chmod sur les répertoires nécessaires
+RUN chmod -R 775 storage bootstrap/cache
+
+# Commande par défaut
+CMD ["php-fpm"]
