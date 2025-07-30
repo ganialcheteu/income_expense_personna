@@ -21,5 +21,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-# fichier connexion mobile preveiew
-# app/Http/Middleware/TrustHosts.php
+/app/Http/Middleware/TrustHosts.php
