@@ -39,23 +39,20 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <select class="form-select form-select-lg @error('role') is-invalid @enderror"
-                                        name="role" id="role">
-                                        {{-- role --}}
-                                        <?php
+                                   <select class="form-select form-select-lg @error('role') is-invalid @enderror"
+    name="role" id="role">
+    {{-- role --}}
+    <?php
     $superAdmin = \App\Models\User::where('role', 'super_admin')->exists();
-    $optionAdmin = "<option value=\"admin\" selected>Admin</option>";
-    $optionSuperAdmin =
-        "<option value=\"super_admin\" disabled>Super Admin</option>";
     if ($superAdmin) {
-        echo htmlspecialchars($optionAdmin, ENT_QUOTES, 'UTF-8');
-        echo htmlspecialchars($optionSuperAdmin, ENT_QUOTES, 'UTF-8');
-    } else {
         echo "<option value=\"admin\" selected>Admin</option>";
-        echo "<option value=\"super_admin\">Super Admin</option>";
+        echo "<option value=\"super_admin\" disabled>Super Admin</option>";
+    } else {
+        echo "<option value=\"admin\">Admin</option>";
+        echo "<option value=\"super_admin\" selected>Super Admin</option>";
     }
-                                            ?>
-                                    </select>
+    ?>
+</select>
                                     @error('role')
                                         <div class="error invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
