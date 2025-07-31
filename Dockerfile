@@ -39,3 +39,4 @@ EXPOSE 80
 
 # Run the entrypoint script
 CMD ["/entrypoint.sh"]
+ 
