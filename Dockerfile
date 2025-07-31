@@ -2,8 +2,8 @@ FROM php:8.3-apache
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    libzip-dev zip unzip git curl mariadb-client nodejs npm \
-    && docker-php-ext-install pdo pdo_mysql zip
+    libzip-dev zip unzip git curl mariadb-client nodejs npm libpq-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
