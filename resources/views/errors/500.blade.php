@@ -1,4 +1,6 @@
-@extends('errors.errorLayout')
+@once
+    @extends('errors.errorLayout')
+@endonce
 @section('title', 'Server Busy Income | Expense')
 @section('content')
 
