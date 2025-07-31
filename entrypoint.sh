@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Generate .env if missing
+# Générer .env s'il est manquant
 if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Generate Laravel app key
-php artisan key:generate --force
+# Générer la clé Laravel uniquement si APP_KEY est vide
+if [ -z "$(grep '^APP_KEY=' .env | cut -d '=' -f2)" ]; then
+    php artisan key:generate --force
+fi
 
-# Start Apache (required for php:apache images)
+# Démarrer Apache (pour images php:apache)
 exec apache2-foreground
