@@ -1,7 +1,6 @@
 @extends('admin.login_register_layout')
 @section('title', 'Login Income | Expense')
 @section('content')
-
     {{-- login content start --}}
 
     <div class="container-scroller">
@@ -92,5 +91,4 @@
     </div>
 
     {{-- login content end --}}
-
 @endsection
