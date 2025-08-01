@@ -91,13 +91,15 @@ class loginController extends Controller
 
         // >>>>>>>bar chart incomes and expenses by month
 
-        $totalIncomesPerMonth = Income::selectRaw('MONTH(payment_date) as month, SUM(amount) as totalIncomesPerMonth')
+        // $totalIncomesPerMonth = Income::selectRaw('MONTH(payment_date) as month, SUM(amount) as totalIncomesPerMonth') //mysql
+        $totalIncomesPerMonth = Income::selectRaw('EXTRACT(MONTH FROM payment_date) as month, SUM(amount) as totalIncomesPerMonth') //postgresql
             ->groupBy('month')
             ->orderBy('month')
             ->pluck('totalIncomesPerMonth', 'month')
             ->toArray();
 
-        $totalExpensesPerMonth = Expense::selectRaw('MONTH(payment_date) as month, SUM(amount) as totalExpensesPerMonth')
+        // $totalExpensesPerMonth = Expense::selectRaw('MONTH(payment_date) as month, SUM(amount) as totalExpensesPerMonth') //mysql
+        $totalExpensesPerMonth = Expense::selectRaw('EXTRACT(MONTH FROM payment_date) as month, SUM(amount) as totalExpensesPerMonth') //postgresql
             ->groupBy('month')
             ->orderBy('month')
             ->pluck('totalExpensesPerMonth', 'month')
