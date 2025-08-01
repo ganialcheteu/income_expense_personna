@@ -2,7 +2,6 @@
 @section('title', 'Login Income | Expense')
 @section('content')
 
-
     {{-- login content start --}}
 
     <div class="container-scroller">
@@ -91,7 +90,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- login content end --}}
 
 @endsection
