@@ -163,13 +163,14 @@
                                 <div class="leaderboard-list">
                                     @foreach ($topCustomers as $index => $customer)
                                                                     <div class="leaderboard-item {{ $index >= 3 ? 'd-none more-customers' : '' }}
-                                                                                @if ($index === 0)
-                                                                                     top-1
-                                                                                @elseif($index === 1)
-                                                                                     top-2
-                                                                                @elseif($index === 2)
-                                                                                     top-3
-                                                                                @endif" data-customer-id="{{ $customer['id'] }}">
+                                                                                                                    @if ($index === 0)
+                                                                                                                         top-1
+                                                                                                                    @elseif($index === 1)
+                                                                                                                         top-2
+                                                                                                                    @elseif($index === 2)
+                                                                                                                         top-3
+                                                                                                                    @endif"
+                                                                        data-customer-id="{{ $customer['id'] }}">
 
                                                                         <!-- position badge -->
                                                                         <div class="badge me-3 d-flex align-items-center justify-content-center"
@@ -202,7 +203,7 @@
                                                                                 <?php
                                         $fullname = explode(' ', $customer['name']);
                                         echo htmlspecialchars($fullname[0], ENT_QUOTES, 'UTF-8');
-                                                                                        ?>
+                                                                                                                            ?>
                                                                             </h3>
                                                                             <div class="customer-meta">
                                                                                 <span
@@ -313,7 +314,7 @@
                                                                                 <?php
                                         $fullname = explode(' ', $activity['name']);
                                         echo htmlspecialchars($fullname[0], ENT_QUOTES, 'UTF-8');
-                                                                                        ?>
+                                                                                                                            ?>
                                                                             </h6>
                                                                         </div>
 
